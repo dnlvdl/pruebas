@@ -9,11 +9,17 @@
     font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background-image: url('https://img.freepik.com/foto-gratis/fondo-azul-degradado-lujo-abstracto-azul-oscuro-liso-banner-estudio-vineta-negra_1258-54328.jpg');
-      background-size: 180% auto;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: #333;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+      canvas#c {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     h1 {
@@ -43,6 +49,7 @@
     }
 
     h2 {
+        text-align: center;
       border-bottom: 1px solid #ccc;
       padding-bottom: 8px;
       margin-bottom: 20px;
@@ -129,10 +136,10 @@
   </style>
 </head>
 <body>
-  <h1>REGISTRO</h1>
+    <br><br><br><br><br><br><br><br>
   <form>
     <div class="column">
-      <h2>Datos Trabajador</h2>
+      <h2>DATOS TRABAJADOR</h2>
         <div class="field-group">
           <label for="rut_num">RUT:</label>
           <input
@@ -590,7 +597,7 @@
 
       <!-- Columna datos contrato -->
       <div class="column">
-        <h2>Datos Contrato</h2>
+        <h2>DATOS CONTRATO</h2>
 
         <div class="field-group">
           <label for="fecha_contrato">Fecha Contrato:</label>
@@ -663,4 +670,65 @@
       </div>
     </form>
   </body>
+   <canvas id="c"></canvas>
+
+  <div class="content">
+    <h1></h1>
+    <p></p>
+  </div>
+
+  <script>
+    (function(){
+      var c = document.getElementById("c"),
+          ctx = c.getContext("2d");
+      
+      function resize() {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      var lines = [],
+          maxSpeed = 5,
+          spacing = 5,
+          xSpacing = 0,
+          n = Math.floor(window.innerWidth / spacing),
+          colors = ["#3B8686", "#79BD9A", "#A8DBA8", "#0B486B"],
+          i;
+
+      for (i = 0; i < n; i++){
+        xSpacing += spacing;
+        lines.push({
+          x: xSpacing,
+          y: Math.round(Math.random()*c.height),
+          width: 2,
+          height: Math.round(Math.random()*(window.innerHeight/10)),
+          speed: Math.random()*maxSpeed + 1,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      
+      function draw(){
+        ctx.clearRect(0,0,c.width,c.height);
+        
+        for (i = 0; i < n; i++){
+          ctx.fillStyle = lines[i].color;
+          ctx.fillRect(lines[i].x, lines[i].y, lines[i].width, lines[i].height);
+          lines[i].y += lines[i].speed;
+          
+          if (lines[i].y > c.height)
+            lines[i].y = 0 - lines[i].height;
+        }
+        
+        requestAnimationFrame(draw);
+      }
+      
+      draw();
+    }());
+  </script>
+
+</body>
 </html>
+</html>
+

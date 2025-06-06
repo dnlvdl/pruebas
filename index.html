@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Contrato del Trabajador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            display: flex;
+            gap: 40px; /* espacio entre columnas */
+        }
+        .column {
+            flex: 1; /* que ocupen el mismo ancho */
+        }
+        .field-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        label {
+            display: inline-block;
+            width: 140px; /* ancho fijo para todos los labels */
+            margin-right: 12px; /* espacio después del texto del label */
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            flex: 1; /* que ocupe el resto del espacio */
+            padding: 6px;
+            font-size: 1em;
+        }
+        h1 {
+            grid-column: span 2; /* para que el título abarque las dos columnas si quieres */
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Contrato del Trabajador</h1>
+    <form>
+        <!-- Columna datos trabajador -->
+        <div class="column">
+            <h2>Datos Trabajador</h2>
+
+            <div class="field-group">
+                <label for="rut">RUT:</label>
+                <input type="text" id="rut" name="rut">
+            </div>
+
+            <div class="field-group">
+                <label for="nombre_trabajador">Nombre:</label>
+                <input type="text" id="nombre_trabajador" name="nombre_trabajador">
+            </div>
+
+            <div class="field-group">
+                <label for="ApellidoPaterno">Apellido Paterno:</label>
+                <input type="text" id="ApellidoPaterno" name="ApellidoPaterno">
+            </div>
+
+            <div class="field-group">
+                <label for="ApellidoMaterno">Apellido Materno:</label>
+                <input type="text" id="ApellidoMaterno" name="ApellidoMaterno">
+            </div>
+
+            <div class="field-group">
+                <label for="fecha_nacimiento">Fecha Nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+            </div>
+
+            <div class="field-group">
+                <label for="nacionalidad">Nacionalidad:</label>
+                <select id="nacionalidad" name="nacionalidad">
+                    <!-- Opciones de nacionalidad aquí -->
+                    <option value="chileno">Chileno</option>
+                    <option value="argentino">Argentino</option>
+                    <option value="peruano">Peruano</option>
+                    <!-- ... -->
+                </select>
+            </div>
+
+            <div class="field-group">
+                <label for="region">Región:</label>
+                <select id="region" name="region">
+                    <option value="metropolitana">Metropolitana</option>
+                    <option value="valparaiso">Valparaíso</option>
+                    <!-- ... -->
+                </select>
+            </div>
+
+            <div class="field-group">
+                <label for="ciudad_chile">Ciudad:</label>
+                <select id="ciudad_chile" name="ciudad_chile">
+                    <option value="santiago">Santiago</option>
+                    <option value="valparaiso">Valparaíso</option>
+                    <!-- ... -->
+                </select>
+            </div>
+
+            <div class="field-group">
+                <label for="comuna_chile">Comuna:</label>
+                <select id="comuna_chile" name="comuna_chile">
+                    <option value="las_condes">Las Condes</option>
+                    <option value="nunoa">Ñuñoa</option>
+                    <!-- ... -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Columna datos contrato -->
+        <div class="column">
+            <h2>Datos Contrato</h2>
+
+            <div class="field-group">
+                <label for="fecha_contrato">Fecha Contrato:</label>
+                <input type="date" id="fecha_contrato" name="fecha_contrato">
+            </div>
+
+            <div class="field-group">
+                <label for="horario">Horario:</label>
+                <input type="text" id="horario" name="horario">
+            </div>
+
+            <div class="field-group">
+                <label for="cargo">Cargo:</label>
+                <input type="text" id="cargo" name="cargo">
+            </div>
+
+            <div class="field-group">
+                <label for="sueldo_base">Sueldo Base:</label>
+                <input type="number" id="sueldo_base" name="sueldo_base" step="0.01">
+            </div>
+
+            <div class="field-group">
+                <label for="gratificacion">Gratificación:</label>
+                <input type="number" id="gratificacion" name="gratificacion" step="0.01">
+            </div>
+
+            <div class="field-group">
+                <label for="bonos">Bonos:</label>
+                <input type="number" id="bonos" name="bonos" step="0.01">
+            </div>
+
+            <div class="field-group">
+                <label for="afp">AFP:</label>
+                <input type="text" id="afp" name="afp">
+            </div>
+
+            <div class="field-group">
+                <label for="fonasa">FONASA:</label>
+                <input type="text" id="fonasa" name="fonasa">
+            </div>
+
+            <div class="field-group">
+                <label for="plazo_fijo">Plazo Fijo:</label>
+                <select id="plazo_fijo" name="plazo_fijo">
+                    <option value="fijo">Fijo</option>
+                    <option value="indefinido">Indefinido</option>
+                </select>
+            </div>
+
+            <div class="field-group">
+                <input type="submit" value="Guardar" style="margin-left: 152px; padding: 8px 16px;">
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,85 +1,163 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Formulario de Contrato del Trabajador</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Trabajador</title>
+  <style>
+    
+    body {
+    font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://img.freepik.com/foto-gratis/fondo-azul-degradado-lujo-abstracto-azul-oscuro-liso-banner-estudio-vineta-negra_1258-54328.jpg');
+      background-size: 180% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #000000; /* celeste */
+      margin-bottom: 40px;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    form {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .column {
+      background-color: #222;
+      border: 2px solid white;
+      border-radius: 12px;
+      padding: 24px;
+      flex: 1;
+      min-width: 340px;
+      max-width: 500px;
+      box-shadow: 0 0 10px #000;
+    }
+
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      color: #00bfff;
+    }
+    
+
+    .field-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    label {
+      width: 140px;
+      margin-right: 12px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      background-color: #333;
+      color: white;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    select option[disabled] {
+      color: gray;
+      font-style: italic;
+    }
+
+    input[type="submit"] {
+      background-color: #00bfff;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #009acd;
+    }
+
+    @media (max-width: 768px) {
       form {
-        display: flex;
-        gap: 40px; /* espacio entre columnas */
+        flex-direction: column;
       }
-      .column {
-        flex: 1; /* que ocupen el mismo ancho */
-      }
+
       .field-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 12px;
+        flex-direction: column;
+        align-items: flex-start;
       }
+
       label {
-        display: inline-block;
-        width: 140px; /* ancho fijo para todos los labels */
-        margin-right: 12px; /* espacio después del texto del label */
-        font-weight: bold;
+        width: 100%;
+        margin-bottom: 6px;
       }
-      input[type="text"],
-      input[type="date"],
-      input[type="number"],
+
+      input,
       select {
-        flex: 1; /* que ocupe el resto del espacio */
-        padding: 6px;
-        font-size: 1em;
+        width: 100%;
       }
-      h1 {
-        grid-column: span 2; /* para que el título abarque las dos columnas si quieres */
+
+      input[type="submit"] {
+        align-self: center;
       }
-      @media (max-width: 768px) {
-  form {
-    flex-direction: column;
-  }
-
-  .column {
-    width: 100%;
-  }
-
-  .field-group {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  label {
-    margin-bottom: 6px;
-    width: 100%; /* para que no se corte en pantallas pequeñas */
-  }
-
-  input,
-  select {
-    width: 100%;
-  }
-
-  input[type="submit"] {
-    margin-left: 0; /* botón centrado */
-  }
-}
-
-    </style>
-  </head>
-  <body>
-    <h1>Formulario de Contrato del Trabajador</h1>
-    <form>
-      <!-- Columna datos trabajador -->
-      <div class="column">
-        <h2>Datos Trabajador</h2>
-
+    }
+  </style>
+</head>
+<body>
+  <h1>REGISTRO</h1>
+  <form>
+    <div class="column">
+      <h2>Datos Trabajador</h2>
         <div class="field-group">
-          <label for="rut">RUT:</label>
-          <input type="text" id="rut" name="rut" />
+          <label for="rut_num">RUT:</label>
+          <input
+            type="text"
+            id="rut_num"
+            name="rut_num"
+            maxlength="8"
+            size="8"
+            pattern="\d{1,8}"
+            placeholder="12345678"
+            required
+          />
+          <span>-</span>
+          <input
+            type="text"
+            id="rut_dv"
+            name="rut_dv"
+            maxlength="1"
+            size="1"
+            pattern="[0-9Kk]"
+            placeholder="K"
+            required
+          />
         </div>
-
-        <div class="field-group">
+<div class="field-group">
           <label for="nombre_trabajador">Nombre:</label>
           <input type="text" id="nombre_trabajador" name="nombre_trabajador" />
         </div>
@@ -101,7 +179,8 @@
 
         <div class="field-group">
           <label for="nacionalidad">Nacionalidad:</label>
-          <select id="nacionalidad" name="nacionalidad">
+          <select id="nacionalidad" name="nacionalidad" required>
+            <option value="" selected disabled>Seleccionar nacionalidad</option>
             <option value="afgano">Afgano</option>
             <option value="albanes">Albanés</option>
             <option value="aleman">Alemán</option>
@@ -292,7 +371,8 @@
 
         <div class="field-group">
           <label for="region">Región:</label>
-          <select id="region" name="region">
+          <select id="region" name="region" required>
+            <option value="" selected disabled>Seleccionar region</option>
             <option value="antofagasta">Antofagasta</option>
             <option value="atacama">Atacama</option>
             <option value="coquimbo">Coquimbo</option>
@@ -311,7 +391,8 @@
 
         <div class="field-group">
           <label for="ciudad_chile">Ciudad:</label>
-          <select id="ciudad_chile" name="ciudad_chile">
+          <select id="ciudad_chile" name="ciudad_chile" required>
+            <option value="" selected disabled>Seleccionar ciudad</option>
             <option value="arica">Arica</option>
             <option value="calama">Calama</option>
             <option value="castro">Castro</option>
@@ -337,56 +418,172 @@
 
         <div class="field-group">
           <label for="comuna_chile">Comuna:</label>
-          <select id="comuna_chile" name="comuna_chile">
-            <option value="algarrobo">Algarrobo</option>
-            <option value="ancud">Ancud</option>
-            <option value="antofagasta">Antofagasta</option>
-            <option value="arica">Arica</option>
-            <option value="buin">Buin</option>
-            <option value="calama">Calama</option>
-            <option value="calera">La Calera</option>
-            <option value="calle_larga">Calle Larga</option>
-            <option value="cartagena">Cartagena</option>
-            <option value="casablanca">Casablanca</option>
-            <option value="chillan">Chillán</option>
-            <option value="colina">Colina</option>
-            <option value="concepcion">Concepción</option>
-            <option value="copiapo">Copiapó</option>
-            <option value="curico">Curicó</option>
-            <option value="curanilahue">Curanilahue</option>
-            <option value="elaquilla">La Ercilla</option>
-            <option value="el_quisco">El Quisco</option>
-            <option value="el_tabo">El Tabo</option>
-            <option value="frutillar">Frutillar</option>
-            <option value="hualpen">Hualpén</option>
-            <option value="iquique">Iquique</option>
-            <option value="la_serena">La Serena</option>
-            <option value="las_condes">Las Condes</option>
-            <option value="los_andes">Los Andes</option>
-            <option value="los_angeles">Los Ángeles</option>
-            <option value="melipilla">Melipilla</option>
-            <option value="nunoa">Ñuñoa</option>
-            <option value="paine">Paine</option>
-            <option value="panguipulli">Panguipulli</option>
-            <option value="pudahuel">Pudahuel</option>
-            <option value="pucon">Pucón</option>
-            <option value="punta_arenas">Punta Arenas</option>
-            <option value="puerto_montt">Puerto Montt</option>
-            <option value="quilpue">Quilpué</option>
-            <option value="quito">Quinta Normal</option>
-            <option value="rancagua">Rancagua</option>
-            <option value="san_bernardo">San Bernardo</option>
-            <option value="san_fernando">San Fernando</option>
-            <option value="san_joaquin">San Joaquín</option>
-            <option value="san_miguel">San Miguel</option>
-            <option value="san_pedro">San Pedro</option>
-            <option value="san_vicente">San Vicente</option>
-            <option value="santiago">Santiago</option>
-            <option value="talca">Talca</option>
-            <option value="temuco">Temuco</option>
-            <option value="valdivia">Valdivia</option>
-            <option value="valparaiso">Valparaíso</option>
-            <option value="vina_del_mar">Viña del Mar</option>
+          <select id="comuna_chile" name="comuna_chile" required>
+            <option value="" selected disabled>seleccionar comuna</option>
+            <option value="Algarrobo">Algarrobo</option>
+            <option value="Alto Hospicio">Alto Hospicio</option>
+            <option value="Andacollo">Andacollo</option>
+            <option value="Antofagasta">Antofagasta</option>
+            <option value="Arauco">Arauco</option>
+            <option value="Arica">Arica</option>
+            <option value="Bulnes">Bulnes</option>
+            <option value="Calama">Calama</option>
+            <option value="Caldera">Caldera</option>
+            <option value="Camarones">Camarones</option>
+            <option value="Calle Larga">Calle Larga</option>
+            <option value="Canela">Canela</option>
+            <option value="Cañete">Cañete</option>
+            <option value="Cañete">Cañete</option>
+            <option value="Carahue">Carahue</option>
+            <option value="Cartagena">Cartagena</option>
+            <option value="Catemu">Catemu</option>
+            <option value="Chaitén">Chaitén</option>
+            <option value="Chañaral">Chañaral</option>
+            <option value="Chiguayante">Chiguayante</option>
+            <option value="Chillán">Chillán</option>
+            <option value="Chillán Viejo">Chillán Viejo</option>
+            <option value="Chonchi">Chonchi</option>
+            <option value="Cholchol">Cholchol</option>
+            <option value="Coihueco">Coihueco</option>
+            <option value="Coinco">Coinco</option>
+            <option value="Colbún">Colbún</option>
+            <option value="Coltauco">Coltauco</option>
+            <option value="Concepción">Concepción</option>
+            <option value="Concón">Concón</option>
+            <option value="Contulmo">Contulmo</option>
+            <option value="Corral">Corral</option>
+            <option value="Coyhaique">Coyhaique</option>
+            <option value="Curanilahue">Curanilahue</option>
+            <option value="Curarrehue">Curarrehue</option>
+            <option value="Diego de Almagro">Diego de Almagro</option>
+            <option value="El Monte">El Monte</option>
+            <option value="El Quisco">El Quisco</option>
+            <option value="El Tabo">El Tabo</option>
+            <option value="Empedrado">Empedrado</option>
+            <option value="Estación Central">Estación Central</option>
+            <option value="Freire">Freire</option>
+            <option value="Fresia">Fresia</option>
+            <option value="Frutillar">Frutillar</option>
+            <option value="General Lagos">General Lagos</option>
+            <option value="Gorbea">Gorbea</option>
+            <option value="Graneros">Graneros</option>
+            <option value="Guaitecas">Guaitecas</option>
+            <option value="Hualaihué">Hualaihué</option>
+            <option value="Hualpén">Hualpén</option>
+            <option value="Huara">Huara</option>
+            <option value="Huechuraba">Huechuraba</option>
+            <option value="Illapel">Illapel</option>
+            <option value="Independencia">Independencia</option>
+            <option value="Iquique">Iquique</option>
+            <option value="Isla de Maipo">Isla de Maipo</option>
+            <option value="La Cisterna">La Cisterna</option>
+            <option value="La Estrella">La Estrella</option>
+            <option value="La Florida">La Florida</option>
+            <option value="La Granja">La Granja</option>
+            <option value="La Higuera">La Higuera</option>
+            <option value="La Reina">La Reina</option>
+            <option value="La Serena">La Serena</option>
+            <option value="Laja">Laja</option>
+            <option value="Llanquihue">Llanquihue</option>
+            <option value="Llaillay">Llaillay</option>
+            <option value="Limache">Limache</option>
+            <option value="Linares">Linares</option>
+            <option value="Lo Barnechea">Lo Barnechea</option>
+            <option value="Lo Espejo">Lo Espejo</option>
+            <option value="Lo Prado">Lo Prado</option>
+            <option value="Los Álamos">Los Álamos</option>
+            <option value="Los Andes">Los Andes</option>
+            <option value="Los Lagos">Los Lagos</option>
+            <option value="Los Muermos">Los Muermos</option>
+            <option value="Los Vilos">Los Vilos</option>
+            <option value="Lota">Lota</option>
+            <option value="Machalí">Machalí</option>
+            <option value="Macul">Macul</option>
+            <option value="Malloa">Malloa</option>
+            <option value="María Pinto">María Pinto</option>
+            <option value="Máfil">Máfil</option>
+            <option value="Maipú">Maipú</option>
+            <option value="Melipeuco">Melipeuco</option>
+            <option value="Melipilla">Melipilla</option>
+            <option value="Monte Patria">Monte Patria</option>
+            <!-- no estaba en la lista, borré -->
+            <option value="Mulchén">Mulchén</option>
+            <option value="Nacimiento">Nacimiento</option>
+            <option value="Negrete">Negrete</option>
+            <option value="Nueva Imperial">Nueva Imperial</option>
+            <option value="Ñiquén">Ñiquén</option>
+            <option value="Olivar">Olivar</option>
+            <option value="Osorno">Osorno</option>
+            <option value="Padre Hurtado">Padre Hurtado</option>
+            <option value="Paillaco">Paillaco</option>
+            <option value="Paine">Paine</option>
+            <!-- no estaba, borré -->
+            <option value="Palena">Palena</option>
+            <option value="Panguipulli">Panguipulli</option>
+            <option value="Panquehue">Panquehue</option>
+            <option value="Pelarco">Pelarco</option>
+            <option value="Pencahue">Pencahue</option>
+            <option value="Peñaflor">Peñaflor</option>
+            <option value="Peumo">Peumo</option>
+            <option value="Pica">Pica</option>
+            <option value="Pitrufquén">Pitrufquén</option>
+            <option value="Pudahuel">Pudahuel</option>
+            <option value="Pucón">Pucón</option>
+            <option value="Puerto Montt">Puerto Montt</option>
+            <option value="Puerto Octay">Puerto Octay</option>
+            <option value="Puerto Varas">Puerto Varas</option>
+            <option value="Purranque">Purranque</option>
+            <option value="Puyehue">Puyehue</option>
+            <option value="Putre">Putre</option>
+            <option value="Putaendo">Putaendo</option>
+            <option value="Quilicura">Quilicura</option>
+            <option value="Quillón">Quillón</option>
+            <option value="Quilpué">Quilpué</option>
+            <option value="Quintero">Quintero</option>
+            <option value="Quinta de Tilcoco">Quinta de Tilcoco</option>
+            <option value="Quinta Normal">Quinta Normal</option>
+            <option value="Recoleta">Recoleta</option>
+            <option value="Renca">Renca</option>
+            <option value="Retiro">Retiro</option>
+            <option value="Rengo">Rengo</option>
+            <option value="Río Ibáñez">Río Ibáñez</option>
+            <option value="Río Negro">Río Negro</option>
+            <option value="San Antonio">San Antonio</option>
+            <option value="San Carlos">San Carlos</option>
+            <option value="San Clemente">San Clemente</option>
+            <option value="San Esteban">San Esteban</option>
+            <option value="San Fabián">San Fabián</option>
+            <option value="San Gregorio">San Gregorio</option>
+            <option value="San Ignacio">San Ignacio</option>
+            <option value="San Joaquín">San Joaquín</option>
+            <option value="San Juan de la Costa">San Juan de la Costa</option>
+            <option value="San Miguel">San Miguel</option>
+            <option value="San Pedro de la Paz">San Pedro de la Paz</option>
+            <option value="San Pedro de Atacama">San Pedro de Atacama</option>
+            <option value="San Rosendo">San Rosendo</option>
+            <option value="San Vicente">San Vicente</option>
+            <option value="Santa Bárbara">Santa Bárbara</option>
+            <option value="Santa Juana">Santa Juana</option>
+            <option value="Santa María">Santa María</option>
+            <option value="Santo Domingo">Santo Domingo</option>
+            <option value="Sierra Gorda">Sierra Gorda</option>
+            <option value="Talcahuano">Talcahuano</option>
+            <option value="Taltal">Taltal</option>
+            <option value="Temuco">Temuco</option>
+            <option value="Tierra Amarilla">Tierra Amarilla</option>
+            <option value="Toltén">Toltén</option>
+            <option value="Tomé">Tomé</option>
+            <option value="Tortel">Tortel</option>
+            <option value="Treguaco">Treguaco</option>
+            <option value="Tucapel">Tucapel</option>
+            <option value="Valdivia">Valdivia</option>
+            <option value="Valparaíso">Valparaíso</option>
+            <option value="Vicuña">Vicuña</option>
+            <option value="Villa Alegre">Villa Alegre</option>
+            <option value="Villa Alemana">Villa Alemana</option>
+            <option value="Vitacura">Vitacura</option>
+            <option value="Yumbel">Yumbel</option>
+            <option value="Yungay">Yungay</option>
           </select>
         </div>
       </div>
@@ -448,6 +645,9 @@
         <div class="field-group">
           <label for="plazo_fijo">Plazo Fijo:</label>
           <select id="plazo_fijo" name="plazo_fijo">
+            <option value="" selected disabled>
+              seleccionar tipo de contrato
+            </option>
             <option value="fijo">Fijo</option>
             <option value="indefinido">Indefinido</option>
           </select>
